@@ -1,8 +1,11 @@
+"use strict";
 let timerId = 0;
 let _time = 5
+
 const startTimer = (duration, display) => {
-    let timer = duration, minutes, seconds;
+    let timer = duration;
     timerId = setInterval(() => {
+        let minutes, seconds;
         minutes = parseInt(timer / 60, 10)
         seconds = parseInt(timer % 60, 10);
 
@@ -11,14 +14,16 @@ const startTimer = (duration, display) => {
 
         display.textContent = minutes + ":" + seconds;
         _time = timer;
+        console.log(new Date);
         if (--timer < 0) {
             document.getElementById("timer").textContent = "This is the end";
-            return false;
+            clearInterval(timerId);
         }
     }, 1000);
 }
 document.getElementById("start").onclick = () => {
-    display = document.querySelector('#timer');
+    clearInterval(timerId)
+    let display = document.querySelector('#timer');
     startTimer(_time, display);
 };
 document.getElementById("pause").onclick = () => {
