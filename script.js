@@ -1,8 +1,6 @@
-let stopped = false;
 let timerId = 0;
-let _time = 60 * 25
+let _time = 5
 const startTimer = (duration, display) => {
-    if (stopped) return false;
     let timer = duration, minutes, seconds;
     timerId = setInterval(() => {
         minutes = parseInt(timer / 60, 10)
@@ -14,7 +12,8 @@ const startTimer = (duration, display) => {
         display.textContent = minutes + ":" + seconds;
         _time = timer;
         if (--timer < 0) {
-            timer = duration;
+            document.getElementById("timer").textContent = "This is the end";
+            return false;
         }
     }, 1000);
 }
