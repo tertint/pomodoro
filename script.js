@@ -13,7 +13,6 @@ const startTimer = (duration, display) => {
 
         display.textContent = minutes + ":" + seconds;
         _time = timer;
-        console.log(new Date);
         if (--timer < 0) {
             document.getElementById("timer").textContent = "This is the end";
             clearInterval(timerId);
@@ -34,4 +33,22 @@ document.getElementById("stop").onclick = () => {
     clearInterval(timerId);
     _time = 60 * 25;
     document.getElementById("timer").textContent = "25:00"
+};
+document.getElementById("work").onclick = () => {
+    clearInterval(timerId);
+    _time = 60 * 25;
+    document.getElementById("timer").textContent = "25:00"
+    document.getElementById("dropdownMenuButton").textContent = "Work"
+};
+document.getElementById("break").onclick = () => {
+    clearInterval(timerId);
+    _time = 60 * 5;
+    document.getElementById("dropdownMenuButton").textContent = "Break"
+    document.getElementById("timer").textContent = "05:00"
+};
+document.getElementById("longbreak").onclick = () => {
+    clearInterval(timerId);
+    _time = 60 * 15;
+    document.getElementById("dropdownMenuButton").textContent = "Long break"
+    document.getElementById("timer").textContent = "15:00"
 };
