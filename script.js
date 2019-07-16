@@ -1,10 +1,9 @@
-"use strict";
 let timerId = 0;
-let _time = 5
-
+let _time = 60 * 25
+$('.dropdown-toggle').dropdown()
 const startTimer = (duration, display) => {
     let timer = duration;
-    timerId = setInterval(() => {
+    const countdown = () => {
         let minutes, seconds;
         minutes = parseInt(timer / 60, 10)
         seconds = parseInt(timer % 60, 10);
@@ -19,7 +18,9 @@ const startTimer = (duration, display) => {
             document.getElementById("timer").textContent = "This is the end";
             clearInterval(timerId);
         }
-    }, 1000);
+    }
+    countdown()
+    timerId = setInterval(countdown, 1000);
 }
 document.getElementById("start").onclick = () => {
     clearInterval(timerId)

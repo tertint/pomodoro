@@ -7,3 +7,17 @@
     height: 50%;
     text-align: center;
 }
+.dropdown{
+	display: block;
+	position: absolute;
+	left: 50%;
+	margin-left: -25%;
+	top: 15%;
+	width: 50%;
+    height: 50%;
+    text-align: center;
+}
+.dropdown-menu.show{
+padding: 0;
+width: 172px;
+}
