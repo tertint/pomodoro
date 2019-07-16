@@ -11,10 +11,10 @@
 	display: block;
 	position: absolute;
 	left: 50%;
-	margin-left: -25%;
+	margin-left: -13.5%;
 	top: -15%;
-	width: 50%;
-    height: 50%;
+	/* width: 50%;
+    height: 50%; */
     text-align: center;
 }
 .dropdown-menu.show{
