@@ -7,15 +7,13 @@
     height: 50%;
     text-align: center;
 }
+.buttons .btn{
+	margin-bottom: 4px;
+	width: 78.25px;
+}
 .dropdown{
 	display: block;
 	position: relative;
-	/* position: absolute; */
-	/* left: 36.5%; */
-	/* margin-left: 36.5%; */
-	/* top: -55px; */
-	/* width: 50%;
-    height: 50%; */
     text-align: center;
 }
 .dropdown-menu.show{

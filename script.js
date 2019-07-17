@@ -1,6 +1,7 @@
 let timerId = 0;
-let _time = 60 * 25
-$('.dropdown-toggle').dropdown()
+let _time = 60 * 25;
+// $('.dropdown-toggle').dropdown()
+
 const startTimer = (duration, display) => {
     let timer = duration;
     const countdown = () => {
@@ -10,17 +11,23 @@ const startTimer = (duration, display) => {
 
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.textContent = minutes + ":" + seconds;
+        let formatTime = minutes + ":" + seconds
+        display.textContent = formatTime;
         _time = timer;
+
+        document.title = formatTime;
+
         if (--timer < 0) {
-            document.getElementById("timer").textContent = "This is the end";
+            intervalTitle.start();
+            document.title = "Time is over";
+            document.getElementById("timer").textContent = "Time is over";
             clearInterval(timerId);
         }
     }
-    countdown()
+    countdown();
     timerId = setInterval(countdown, 1000);
 }
+
 document.getElementById("start").onclick = () => {
     clearInterval(timerId)
     let display = document.querySelector('#timer');
@@ -51,4 +58,24 @@ document.getElementById("longbreak").onclick = () => {
     _time = 60 * 15;
     document.getElementById("dropdownMenuButton").textContent = "Long break"
     document.getElementById("timer").textContent = "15:00"
+}
+
+const changeTitle = function() { // функция для смены заголовка
+    this.title = function () {
+        let title = document.title;
+        document.title = (title == "Pomodoro timer" ? "Time is over" : "Pomodoro timer");
+    }
+};
+
+const intervalTitle = new changeTitle();
+
+changeTitle.prototype.start = function() {
+    this.interval = setInterval(this.title, 1000);
+};
+changeTitle.prototype.stop = function() {
+    clearInterval(this.interval)
+};
+window.onfocus = function() {
+    document.title = "Pomodoro timer"
+    intervalTitle.stop();
 };
