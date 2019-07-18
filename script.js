@@ -1,6 +1,5 @@
 let timerId = 0;
 let _time = 60 * 25;
-// $('.dropdown-toggle').dropdown()
 
 const startTimer = (duration, display) => {
     let timer = duration;
@@ -27,7 +26,7 @@ const startTimer = (duration, display) => {
     countdown();
     timerId = setInterval(countdown, 1000);
 }
-
+// работа кнопок
 document.getElementById("start").onclick = () => {
     clearInterval(timerId)
     let display = document.querySelector('#timer');
@@ -36,11 +35,23 @@ document.getElementById("start").onclick = () => {
 document.getElementById("pause").onclick = () => {
     clearInterval(timerId);
 };
+
 document.getElementById("stop").onclick = () => {
     clearInterval(timerId);
-    _time = 60 * 25;
-    document.getElementById("timer").textContent = "25:00"
+    if (document.getElementById("dropdownMenuButton").textContent === "Break") {
+        document.getElementById("timer").textContent = "05:00";
+        _time = 60 * 5;
+    }
+    else if (document.getElementById("dropdownMenuButton").textContent === "Long break") {
+        document.getElementById("timer").textContent = "15:00";
+        _time = 60 * 15;
+    }
+    else {
+        document.getElementById("timer").textContent = "25:00";
+        _time = 60 * 25;
+    }
 };
+
 document.getElementById("work").onclick = () => {
     clearInterval(timerId);
     _time = 60 * 25;
@@ -60,22 +71,23 @@ document.getElementById("longbreak").onclick = () => {
     document.getElementById("timer").textContent = "15:00"
 }
 
-const changeTitle = function() { // функция для смены заголовка
+//смена заголовка
+const changeTitle = function () {
     this.title = function () {
         let title = document.title;
         document.title = (title == "Pomodoro timer" ? "Time is over" : "Pomodoro timer");
     }
 };
-
 const intervalTitle = new changeTitle();
 
-changeTitle.prototype.start = function() {
+changeTitle.prototype.start = function () {
     this.interval = setInterval(this.title, 1000);
 };
-changeTitle.prototype.stop = function() {
+changeTitle.prototype.stop = function () {
     clearInterval(this.interval)
 };
-window.onfocus = function() {
+
+window.onfocus = function () {
     document.title = "Pomodoro timer"
     intervalTitle.stop();
 };
